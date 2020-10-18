@@ -1,0 +1,1 @@
+def from_internet(): print('You are executing random code from the internet');

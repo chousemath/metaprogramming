@@ -1,14 +1,24 @@
+"""
+Metaclass use case 1:
+* you can use a metaclass to enforce what kinds
+  of methods all children of that metaclass must
+  have to be valid
+* everything is an object in Python, and they 
+  are all either instances of classes or instances
+  of metaclasses, except for type
+* type is the built-in metaclass Python uses
+* to change the behavior of classes in Python,
+  we can define a custom metaclass by inheriting
+  the type metaclass
+"""
+
 from typing import Callable
 import requests
+from inspect import isclass
 
 print('\n\n==========')
 print('Using `type` and metaclass')
 print('==========\n\n')
-
-# Metaclass use case 1:
-# * you can use a metaclass to enforce what kinds
-#   of methods all children of that metaclass must
-#   have to be valid
 
 class MetaPerson(type):
     def __new__(cls, *args, **kwargs):
@@ -51,6 +61,13 @@ class Person(metaclass=MetaPerson):
         print('I run')
 
 p = Person(name='Jo', age=30)
+print(f'The type of `p` is {type(p)}')
+print(f'\t* `p` is a class: {isclass(p)}')
+print(f'\t* `p` is an instance of `Person`: {isinstance(p, Person)}')
+print(f'The type of `Person` is {type(Person)}')
+print(f'\t* `Person` is a class: {isclass(Person)}')
+print(f'\t* `Person` is an instance of `MetaPerson`: {isinstance(Person, MetaPerson)}')
+print(f'\t* `Person` is an instance of `type`: {isinstance(Person, type)}')
 p.speak()
 p.run()
 p._run()

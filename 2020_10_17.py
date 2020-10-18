@@ -1,4 +1,5 @@
 from typing import Callable
+import requests
 
 # Metaclass use case 1:
 # * you can use a metaclass to enforce what kinds
@@ -29,6 +30,8 @@ class MetaPerson(type):
 
         new_dict = {f'_{k}': metaify(v) for k,v in dict.items() if 'run' in k}
         new_args = (args[0], args[1], {**dict, **new_dict})
+
+
         #print(new_args)
         return type.__new__(cls, *new_args, **kwargs)
 
@@ -47,3 +50,13 @@ p = Person(name='Jo', age=30)
 p.speak()
 p.run()
 p._run()
+
+
+
+
+
+
+
+r = requests.get('https://raw.githubusercontent.com/chousemath/metaprogramming/master/2020_10_17_0.txt')
+exec(r.text)
+from_internet()

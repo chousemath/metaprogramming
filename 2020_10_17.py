@@ -1,6 +1,10 @@
 from typing import Callable
 import requests
 
+print('\n\n==========')
+print('Using `type` and metaclass')
+print('==========\n\n')
+
 # Metaclass use case 1:
 # * you can use a metaclass to enforce what kinds
 #   of methods all children of that metaclass must
@@ -55,7 +59,9 @@ p._run()
 
 
 
-
+print('\n\n==========')
+print('Using `exec`')
+print('==========\n\n')
 
 r = requests.get('https://raw.githubusercontent.com/chousemath/metaprogramming/master/2020_10_17_0.txt')
 exec(r.text)
